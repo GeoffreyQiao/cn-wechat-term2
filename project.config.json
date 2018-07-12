@@ -8,7 +8,7 @@
 		"minified": true,
 		"newFeature": true
 	},
-	"appid": "你的 App ID",
+	"appid": "wx16f5b1fc81a5bc54",
 	"projectname": "cn-wechat-term2",
 	"condition": {
 		"search": {
