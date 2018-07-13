@@ -49,6 +49,7 @@ Page({
       title: '商品购买中...',
     })
 
+    console.log(this.data.product)
     let product = Object.assign({
       count: 1
     }, this.data.product)

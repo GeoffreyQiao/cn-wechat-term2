@@ -2,40 +2,10 @@
 	"miniprogramRoot": "./client",
 	"qcloudRoot": "./server",
 	"setting": {
-		"urlCheck": false,
-		"es6": true,
-		"postcss": true,
-		"minified": true,
 		"newFeature": true
 	},
-	"appid": "你的 App ID",
-	"projectname": "cn-wechat-term2",
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"list": []
-		},
-		"miniprogram": {
-			"current": -1,
-			"list": [
-				{
-					"id": -1,
-					"name": "商品详情页",
-					"pathName": "pages/detail/detail",
-					"query": ""
-				}
-			]
-		}
-	}
+	"appid": "wx16f5b1fc81a5bc54",
+	"projectname": "%E5%BC%80%E5%8F%91",
+	"compileType": "miniprogram",
+	"condition": {}
 }

@@ -11,9 +11,8 @@ Page({
   data: {
     userInfo: null,
     locationAuthType: app.data.locationAuthType,
-    orderList: [], // 订单列表
+      orderList: [], // 订单列表 
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -28,6 +27,7 @@ Page({
           userInfo,
           locationAuthType: app.data.locationAuthType
         })
+          console.log(this)
       },
       error: () => {
         this.setData({
@@ -48,11 +48,11 @@ Page({
       url: config.service.orderList,
       login: true,
       success: result => {
-        console.log("123");
+          console.log(`result:`)
+        console.log(result)
         wx.hideLoading()
 
         let data = result.data
-        console.log(data)
         if (!data.code) {
           this.setData({
             orderList: data.data
