@@ -62,7 +62,7 @@ App({
     if (userInfo) return userInfo
 
     qcloud.request({
-        url: config.service.requestUrl,
+        url: config.service.user,
       login: true,
       success: result => {
         let data = result.data

@@ -33,7 +33,7 @@ var config = {
 
         addOrder: `${host}/weapp/order`,
 
-        user: `${host}/weapp/user`
+        user: `${host}/weapp/user`,
 
     }
 };
