@@ -4,100 +4,136 @@ const config = require('../../config.js')
 
 Page({
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-    productList: [], // 商品列表
-  },
+    /**
+     * 页面的初始数据
+     */
+    data: {
+        productList: [], // 商品列表
+    },
 
-  getProductList() {
-    wx.showLoading({
-      title: '商品数据加载中...',
-    })
+    addToTrolley(event) {
+        let productId = event.currentTarget.dataset.id
 
-    qcloud.request({
-      url: config.service.productList,
-      success: result => {
-        wx.hideLoading()
+        if (productId) {
+            qcloud.request({
+                url: config.service.addTrolley,
+                login: true,
+                method: 'PUT',
+                data:{
+                    id: productId
+                },
+                success: result => {
+                    let data = result.data
 
-        let data = result.data
-        if (!data.code) {
-          this.setData({
-            productList: data.data
-          })
-        } else {
-          wx.showToast({
-            icon: 'none',
-            title: '商品数据加载错误',
-          })
+                    if (!data.code) {
+                        wx.showToast({
+                            title: '已添加到购物车',
+                        })
+                    } else {
+                        wx.showToast({
+                            icon: 'none',
+                            title: '添加到购物车失败',
+                        })
+                    }
+                },
+                fail: () => {
+                    wx.showToast({
+                        icon: 'none',
+                        title: '添加到购物车失败',
+                    })
+                }
+            })
         }
-      },
+    },
 
-      fail: () => {
-        wx.hideLoading()
 
-        wx.showToast({
-          icon: 'none',
-          title: '商品数据加载错误',
+    getProductList() {
+        wx.showLoading({
+            title: '商品数据加载中...',
         })
-      }
-    })
-  },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    this.getProductList()
-  },
+        qcloud.request({
+            url: config.service.productList,
+            success: result => {
+                wx.hideLoading()
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
+                let data = result.data
+                if (!data.code) {
+                    this.setData({
+                        productList: data.data
+                    })
+                } else {
+                    wx.showToast({
+                        icon: 'none',
+                        title: '商品数据加载错误',
+                    })
+                }
+            },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
+            fail: () => {
+                wx.hideLoading()
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
+                wx.showToast({
+                    icon: 'none',
+                    title: '商品数据加载错误',
+                })
+            }
+        })
+    },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad: function (options) {
+        this.getProductList()
+    },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady: function () {
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
+    },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function () {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面隐藏
+     */
+    onHide: function () {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面卸载
+     */
+    onUnload: function () {
+
+    },
+
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh: function () {
+
+    },
+
+    /**
+     * 页面上拉触底事件的处理函数
+     */
+    onReachBottom: function () {
+
+    },
+
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage: function () {
+
+    }
 })

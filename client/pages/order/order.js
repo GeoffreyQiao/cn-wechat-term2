@@ -27,7 +27,6 @@ Page({
           userInfo,
           locationAuthType: app.data.locationAuthType
         })
-          console.log(this)
       },
       error: () => {
         this.setData({
@@ -48,8 +47,6 @@ Page({
       url: config.service.orderList,
       login: true,
       success: result => {
-          console.log(`result:`)
-        console.log(result)
         wx.hideLoading()
 
         let data = result.data

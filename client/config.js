@@ -29,12 +29,26 @@ var config = {
         //下载商品详情
         productDetail: `${host}/weapp/product/`,
 
-        orderList: `${host}/weapp/order`,
-
-        addOrder: `${host}/weapp/order`,
-
+        // 拉取用户信息
         user: `${host}/weapp/user`,
 
+        // 创建订单
+        addOrder: `${host}/weapp/order`,
+
+        // 获取已购买订单列表
+        orderList: `${host}/weapp/order`,
+
+        // 添加到购物车商品列表
+        addTrolley: `${host}/weapp/trolley`,
+
+        trolleyList: `${host}/weapp/trolley`,
+
+        // 更新购物车商品列表
+        updateTrolley: `${host}/weapp/trolley`,
+
+        //从购物车列表中清除已购买商品
+        deletePaid: `${host}/weapp/trolley`,
+    
     }
 };
 
