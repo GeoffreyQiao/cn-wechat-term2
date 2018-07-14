@@ -49,6 +49,8 @@ router.post('/trolley', validationMiddleware, controllers.trolley.update)
 router.put('/comment', validationMiddleware, controllers.comment.add)
 // 获取评论列表
 router.get('/comment', controllers.comment.list)
+/*
 //清除已购商品
 router.delete('/trolley', validationMiddleware, controllers.trolley.deletePaid)
+*/
 module.exports = router

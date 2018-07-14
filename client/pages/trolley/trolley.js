@@ -231,22 +231,22 @@ Page({
         })
     },
 
-    emptyTrolley(list) {
-        qcloud.request({
-            url: config.service.deletePaid,
-            login: true,
-            method: 'DELETE',
-            data: {
-                list: list
-            },
-            success: result => {
-                return
-            },
-            fail: (err) => {
-                return
-            }
-        })
-    },
+    // emptyTrolley(list) {
+    //     qcloud.request({
+    //         url: config.service.deletePaid,
+    //         login: true,
+    //         method: 'DELETE',
+    //         data: {
+    //             list: list
+    //         },
+    //         success: result => {
+    //             return
+    //         },
+    //         fail: (err) => {
+    //             return
+    //         }
+    //     })
+    // },
 
     onTapPay() {
         if (!this.data.trolleyAccount) return
@@ -277,7 +277,7 @@ Page({
                     wx.showToast({
                         title: '结算成功',
                     })
-                    this.emptyTrolley(needToPayProductList)
+                    // this.emptyTrolley(needToPayProductList)
                     this.getTrolley()
                 } else {
                     wx.showToast({
@@ -286,9 +286,9 @@ Page({
                     })
                 }
             },
-            fail: () => {
+            fail: err => {
                 wx.hideLoading()
-
+                console.log(err)
                 wx.showToast({
                     icon: 'none',
                     title: '结算失败',
