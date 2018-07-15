@@ -39,6 +39,7 @@ router.get('/product/:id', controllers.product.detail)
 router.post('/order', validationMiddleware, controllers.order.add)
 // 显示已购买订单
 router.get('/order', validationMiddleware, controllers.order.list)
+<<<<<<< HEAD
 // 商品添加到购物车列表
 router.put('/trolley', validationMiddleware, controllers.trolley.add)
 // 获取购物车商品列表
@@ -51,5 +52,7 @@ router.put('/comment', validationMiddleware, controllers.comment.add)
 router.get('/comment', controllers.comment.list)
 //清除已购商品
 router.delete('/trolley', validationMiddleware, controllers.trolley.deletePaid)
+=======
+>>>>>>> parent of 525efb2... 购物车中支付即消失
 
 module.exports = router

@@ -33,13 +33,15 @@ var config = {
 
         addOrder: `${host}/weapp/order`,
 
-        // 更新购物车商品列表
-        updateTrolley: `${host}/weapp/trolley`,
+        user: `${host}/weapp/user`,
 
+<<<<<<< HEAD
         //从购物车列表中清除已购买商品
         deletePaid: `${host}/weapp/trolley`,
 
         user: `${host}/weapp/user`,
+=======
+>>>>>>> parent of 525efb2... 购物车中支付即消失
     }
 };
 
