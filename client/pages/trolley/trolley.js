@@ -1,6 +1,4 @@
 // pages/trolley/trolley.js
-const qcloud = require('../../vendor/wafer2-client-sdk/index')
-const config = require('../../config')
 const app = getApp()
 
 Page({
@@ -10,12 +8,7 @@ Page({
      */
     data: {
         userInfo: null,
-        locationAuthType: app.data.locationAuthType,
-        trolleyList: [], // 购物车商品列表
-        trolleyCheckMap: [], // 购物车中选中的id哈希表
-        trolleyAccount: 0, // 购物车结算总价
-        isTrolleyEdit: false, // 购物车是否处于编辑状态
-        isTrolleyTotalCheck: false, // 购物车中商品是否全选
+        locationAuthType: app.data.locationAuthType
     },
 
     /**
@@ -32,8 +25,6 @@ Page({
                     userInfo,
                     locationAuthType: app.data.locationAuthType
                 })
-
-                this.getTrolley()
             },
             error: () => {
                 this.setData({
@@ -42,6 +33,7 @@ Page({
             }
         })
     },
+
 
     getTrolley() {
         wx.showLoading({
@@ -231,22 +223,22 @@ Page({
         })
     },
 
-    // emptyTrolley(list) {
-    //     qcloud.request({
-    //         url: config.service.deletePaid,
-    //         login: true,
-    //         method: 'DELETE',
-    //         data: {
-    //             list: list
-    //         },
-    //         success: result => {
-    //             return
-    //         },
-    //         fail: (err) => {
-    //             return
-    //         }
-    //     })
-    // },
+    emptyTrolley(list) {
+        qcloud.request({
+            url: config.service.deletePaid,
+            login: true,
+            method: 'DELETE',
+            data: {
+                list: list
+            },
+            success: result => {
+                return
+            },
+            fail: err => {
+                return err
+            }
+        })
+    },
 
     onTapPay() {
         if (!this.data.trolleyAccount) return
@@ -277,7 +269,7 @@ Page({
                     wx.showToast({
                         title: '结算成功',
                     })
-                    // this.emptyTrolley(needToPayProductList)
+                    this.emptyTrolley(needToPayProductList)
                     this.getTrolley()
                 } else {
                     wx.showToast({
@@ -317,8 +309,6 @@ Page({
                 this.setData({
                     userInfo
                 })
-
-                this.getTrolley()
             }
         })
     },

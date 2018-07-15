@@ -62,20 +62,20 @@ module.exports = {
         ctx.state.data = {}
     },
 
-    // deletePaid: async ctx => {
-    //     let user = ctx.state.$wxInfo.userinfo.openId
-    //     let productList = ctx.request.body.list || []
-    //     let sql = 'DELETE FROM trolley_user WHERE trolley_user.user = ? AND  trolley_user.id  IN (?)'
-    //     let ids = []
+    deletePaid: async ctx => {
+        let user = ctx.state.$wxInfo.userinfo.openId
+        let productList = ctx.request.body.list || []
+        let sql = 'DELETE FROM trolley_user WHERE trolley_user.user = ? AND  trolley_user.id  IN (?)'
+        let ids = []
 
-    //     productList.forEach(product => {
-    //         ids.push(product.id)
-    //     })
+        productList.forEach(product => {
+            ids.push(product.id)
+        })
 
-    //     let idStr = ids.join(',')
-    //     await DB.query(sql, [user, idStr])
+        let idStr = ids.join(',')
+        await DB.query(sql, [user, idStr])
 
-    //     ctx.state.data = {}
-    // }
+        ctx.state.data = {}
+    }
 
 }
