@@ -1,4 +1,6 @@
 // pages/trolley/trolley.js
+const qcloud = require('../../vendor/wafer2-client-sdk/index')
+const config = require('../../config')
 const app = getApp()
 
 Page({
@@ -8,7 +10,12 @@ Page({
      */
     data: {
         userInfo: null,
-        locationAuthType: app.data.locationAuthType
+        locationAuthType: app.data.locationAuthType,
+        trolleyList: [], // 购物车商品列表
+        trolleyCheckMap: [], // 购物车中选中的id哈希表
+        trolleyAccount: 0, // 购物车结算总价
+        isTrolleyEdit: false, // 购物车是否处于编辑状态
+        isTrolleyTotalCheck: false, // 购物车中商品是否全选
     },
 
     /**
@@ -25,6 +32,8 @@ Page({
                     userInfo,
                     locationAuthType: app.data.locationAuthType
                 })
+
+                this.getTrolley()
             },
             error: () => {
                 this.setData({
@@ -33,8 +42,6 @@ Page({
             }
         })
     },
-
-<<<<<<< HEAD
 
     getTrolley() {
         wx.showLoading({
@@ -73,9 +80,13 @@ Page({
 
     onTapCheckSingle(event) {
         let checkId = event.currentTarget.dataset.id
-        let { trolleyCheckMap, trolleyList, isTrolleyTotalCheck, trolleyAccount } = this.data
+        let trolleyCheckMap = this.data.trolleyCheckMap
+        let trolleyList = this.data.trolleyList
+        let isTrolleyTotalCheck = this.data.isTrolleyTotalCheck
+        let trolleyAccount = this.data.trolleyAccount
         let numTotalProduct
         let numCheckedProduct = 0
+
         // 单项商品被选中/取消
         trolleyCheckMap[checkId] = !trolleyCheckMap[checkId]
 
@@ -97,7 +108,10 @@ Page({
     },
 
     onTapCheckTotal(event) {
-        let { trolleyCheckMap, trolleyList, isTrolleyTotalCheck, trolleyAccount } = this.data
+        let trolleyCheckMap = this.data.trolleyCheckMap
+        let trolleyList = this.data.trolleyList
+        let isTrolleyTotalCheck = this.data.isTrolleyTotalCheck
+        let trolleyAccount = this.data.trolleyAccount
 
         // 全选按钮被选中/取消
         isTrolleyTotalCheck = !isTrolleyTotalCheck
@@ -139,10 +153,14 @@ Page({
     },
 
     adjustTrolleyProductCount(event) {
-        let { trolleyCheckMap, trolleyList } = this.data
-        let { type: adjustType, id: productId } = event.currentTarget.dataset
+        let trolleyCheckMap = this.data.trolleyCheckMap
+        let trolleyList = this.data.trolleyList
+        let dataset = event.currentTarget.dataset
+        let adjustType = dataset.type
+        let productId = dataset.id
         let product
         let index
+
 
         for (index = 0; index < trolleyList.length; index++) {
             if (productId === trolleyList[index].id) {
@@ -224,23 +242,6 @@ Page({
         })
     },
 
-    emptyTrolley(list) {
-        qcloud.request({
-            url: config.service.deletePaid,
-            login: true,
-            method: 'DELETE',
-            data: {
-                list: list
-            },
-            success: result => {
-                return
-            },
-            fail: err => {
-                return err
-            }
-        })
-    },
-
     onTapPay() {
         if (!this.data.trolleyAccount) return
 
@@ -248,7 +249,9 @@ Page({
             title: '结算中...',
         })
 
-        let { trolleyCheckMap, trolleyList } = this.data
+        let trolleyCheckMap = this.data.trolleyCheckMap
+        let trolleyList = this.data.trolleyList
+
         let needToPayProductList = trolleyList.filter(product => {
             return !!trolleyCheckMap[product.id]
         })
@@ -270,7 +273,7 @@ Page({
                     wx.showToast({
                         title: '结算成功',
                     })
-                    this.emptyTrolley(needToPayProductList)
+
                     this.getTrolley()
                 } else {
                     wx.showToast({
@@ -279,9 +282,9 @@ Page({
                     })
                 }
             },
-            fail: err => {
+            fail: () => {
                 wx.hideLoading()
-                console.log(err)
+
                 wx.showToast({
                     icon: 'none',
                     title: '结算失败',
@@ -290,8 +293,6 @@ Page({
         })
     },
 
-=======
->>>>>>> parent of 525efb2... 购物车中支付即消失
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -312,6 +313,8 @@ Page({
                 this.setData({
                     userInfo
                 })
+
+                this.getTrolley()
             }
         })
     },
