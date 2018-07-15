@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+      test:true,
     userInfo: null,
     locationAuthType: app.data.locationAuthType,
       orderList: [], // 订单列表 
