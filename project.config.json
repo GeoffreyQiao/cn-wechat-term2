@@ -10,6 +10,7 @@
 	},
 	"appid": "wx16f5b1fc81a5bc54",
 	"projectname": "cn-wechat-term2",
+	"libVersion": "2.2.0",
 	"condition": {
 		"search": {
 			"current": -1,

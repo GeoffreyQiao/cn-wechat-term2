@@ -1,4 +1,4 @@
-const CONF = {
+module.exports = {
     port: '5757',
     rootPathname: '',
 
@@ -30,11 +30,11 @@ const CONF = {
          * 地区简称
          * @查看 https://cloud.tencent.com/document/product/436/6224
          */
-        region: 'ap-guangzhou',
+        region: 'ap-chengdu',
         // Bucket 名称
-        fileBucket: 'qcloudtest',
+        fileBucket: 'product',
         // 文件夹
-        uploadFolder: ''
+        uploadFolder: 'upTemp'
     },
 
     // 微信登录态有效期
@@ -42,4 +42,3 @@ const CONF = {
     wxMessageToken: 'abcdefgh'
 }
 
-module.exports = CONF

@@ -26,6 +26,7 @@ Page({
       url: config.service.productList,
       success: result => {
         wx.hideLoading()
+        console.log(result)
 
         if (!result.data.code) {
           this.setData({

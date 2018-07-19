@@ -37,6 +37,7 @@ Page({
               let itemDate = new Date(item.create_time)
               item.createTime = _.formatTime(itemDate)
               item.images = item.images ? item.images.split(';;') : []
+              // item.username = item.username ? unescape(item.username) : '?'
               return item
             })
           })

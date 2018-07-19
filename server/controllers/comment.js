@@ -1,5 +1,6 @@
 const DB = require('../utils/db')
 
+
 module.exports = {
 
   /**
@@ -17,9 +18,9 @@ module.exports = {
     images = images.join(';;')
 
     if (!isNaN(productId)) {
-      await DB.query('INSERT INTO comment(user, username, avatar, content, images, product_id) VALUES (?, ?, ?, ?, ?, ?)', [user, username, avatar, content, images, productId])
-    }
 
+      let res = await DB.query('INSERT INTO comment(user, username, avatar, content, images, product_id) VALUES (?, ?, ?, ?, ?, ?)', [user, username, avatar, content, images, productId])
+    }
     ctx.state.data = {}
   },
 
