@@ -17,6 +17,10 @@ App({
     locationAuthType: UNPROMPTED
   },
 
+  /**
+   * 
+   * @param {*} param0 
+   */
   login({ success, error }) {
     wx.getSetting({
       success: res => {
@@ -38,6 +42,10 @@ App({
     })
   },
 
+  /**
+   * 
+   * @param {*} param0 
+   */
   doQcloudLogin({ success, error }) {
     // 调用 qcloud 登陆接口
     qcloud.login({
@@ -58,6 +66,10 @@ App({
     })
   },
 
+  /**
+   * 
+   * @param {*} param0 
+   */
   getUserInfo({ success, error }) {
     if (userInfo) return userInfo
 

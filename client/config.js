@@ -54,5 +54,5 @@ var config = {
     commentList: `${host}/weapp/comment`,
   }
 };
-
+// export default config
 module.exports = config;

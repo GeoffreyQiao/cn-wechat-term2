@@ -1,7 +1,7 @@
 // pages/home/home.js
 const qcloud = require('../../vendor/wafer2-client-sdk/index.js')
 const config = require('../../config.js')
-
+// export default config
 Page({
 
   /**
@@ -18,6 +18,9 @@ Page({
     this.getProductList()
   },
 
+  /**
+   * 获取所有商品信息
+   */
   getProductList() {
     wx.showLoading({
       title: '商品数据加载中',
@@ -47,6 +50,10 @@ Page({
     });
   },
 
+  /**
+   * 
+   * @param {Event} event 事件对象
+   */
   addToTrolley(event) {
     let productId = event.currentTarget.dataset.id
     let productList = this.data.productList

@@ -33,8 +33,14 @@ Page({
 
   },
 
-  onTapLogin: function () {
+  /**
+   * 
+   */
+  onTapLogin() {
     app.login({
+      /**
+       * @arg userInfo Object 用户信息
+       */
       success: ({ userInfo }) => {
         this.setData({
           userInfo,
@@ -59,7 +65,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow() {
     // 同步授权状态
     this.setData({
       locationAuthType: app.data.locationAuthType

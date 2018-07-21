@@ -2,8 +2,6 @@
 const qcloud = require('../../vendor/wafer2-client-sdk/index')
 const config = require('../../config')
 
-
-
 Page({
 
     /**
@@ -18,7 +16,6 @@ Page({
     uploadImage(cb) {
         let commentImages = this.data.commentImages
         let images = []
-
         if (commentImages.length) {
             let length = commentImages.length
             for (let i = 0; i < length; i++) {

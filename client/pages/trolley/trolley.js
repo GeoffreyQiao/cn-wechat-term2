@@ -25,7 +25,7 @@ Page({
 
   },
 
-  onTapLogin: function () {
+  onTapLogin() {
     app.login({
       success: ({ userInfo }) => {
         this.setData({
@@ -43,6 +43,9 @@ Page({
     })
   },
 
+  /**
+   * 获取该用户购物车信息
+   */
   getTrolley() {
     wx.showLoading({
       title: '刷新购物车数据...',
@@ -78,6 +81,10 @@ Page({
     })
   },
 
+  /**
+   * 获取对单个商品前的勾选按钮的点击结果
+   * @param {Event} event 
+   */
   onTapCheckSingle(event) {
     let checkId = event.currentTarget.dataset.id
     let trolleyCheckMap = this.data.trolleyCheckMap
@@ -107,6 +114,10 @@ Page({
     })
   },
 
+  /**
+   * 全选按钮的结果
+   * @param {*} event 
+   */
   onTapCheckTotal(event) {
     let trolleyCheckMap = this.data.trolleyCheckMap
     let trolleyList = this.data.trolleyList
@@ -131,6 +142,11 @@ Page({
 
   },
 
+  /**
+   * 计算购物车中当前所有被勾选商品的合计金额
+   * @param {Array} trolleyList 购物车中所有商品列表
+   * @param {*} trolleyCheckMap 购物车中所有商品的勾选状态
+   */
   calcAccount(trolleyList, trolleyCheckMap) {
     let account = 0
     trolleyList.forEach(product => {
@@ -140,6 +156,9 @@ Page({
     return account
   },
 
+  /**
+   * 切换购物车商品的编辑状态
+   */
   onTapEditTrolley() {
     let isTrolleyEdit = this.data.isTrolleyEdit
 
