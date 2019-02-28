@@ -2,7 +2,6 @@ const DB = require('../utils/db')
 
 
 module.exports = {
-
   /**
    * 添加评论
    */

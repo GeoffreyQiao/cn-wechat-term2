@@ -32,7 +32,7 @@ module.exports = {
          */
         region: 'ap-chengdu',
         // Bucket 名称
-        fileBucket: 'product',
+        fileBucket: 'product-1254024905',
         // 文件夹
         uploadFolder: 'upTemp'
     },
